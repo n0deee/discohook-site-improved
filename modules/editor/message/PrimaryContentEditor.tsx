@@ -94,6 +94,17 @@ export function PrimaryContentEditor(props: PrimaryContentEditorProps) {
           />
         </Stack>
       </Section>
+      <Section name="Others">
+        <Stack gap={12}>
+          <Checkbox
+            id={`_${message.id}_tts`}
+            label="TTS"
+            description='Makes the message being read with Text to Speech (for users who have this option enabled)'
+            error={form.field("tts").error}
+            {...form.field("tts").inputProps}
+          />
+        </Stack>
+      </Section>
       <FileInputField
         id={`_${message.id}_files`}
         label="Files"

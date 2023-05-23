@@ -122,6 +122,9 @@ export const editorForm = new Form(EditorManager, {
     flags_suppress_notifications: new Field(converters.boolean, {
       controlled: controlled.object,
     }),
+    tts: new Field(converters.boolean, {
+      controlled: controlled.object,
+    }),
     reference: new Field(converters.string, {
       controlled: controlled.object,
       validators: [matchesRegex(MESSAGE_REF_RE, "Invalid message link")],

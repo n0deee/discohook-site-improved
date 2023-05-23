@@ -20,6 +20,7 @@ export const MessageModel = types
     badge: types.optional(types.maybeNull(types.string), "Bot"),
     flags_suppress_embeds: types.optional(types.boolean, false),
     flags_suppress_notifications: types.optional(types.boolean, false), // silent
+    tts: types.optional(types.boolean, false),
   })
   .volatile(() => ({
     files: [] as readonly File[],
