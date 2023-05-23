@@ -21,3 +21,6 @@ yarn run dev
 yarn run build
 yarn run start
 ```
+
+# Fork Changes
+- Added TTS option
