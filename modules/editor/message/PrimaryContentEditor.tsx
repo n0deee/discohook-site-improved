@@ -87,7 +87,7 @@ export function PrimaryContentEditor(props: PrimaryContentEditorProps) {
           />
           <Checkbox
             id={`_${message.id}_suppress_notifications`}
-            label="Suppress Notifications"
+            label="Suppress Notifications (@silent)"
             description='If the message contains mentions in its "Content" field, this prevents Discord from sending out notifications when it is sent.'
             error={form.field("flags_suppress_notifications").error}
             {...form.field("flags_suppress_notifications").inputProps}
