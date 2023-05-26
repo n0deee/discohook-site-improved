@@ -1,11 +1,13 @@
 /* eslint-disable import/no-cycle */
 
-import { Instance, SnapshotOrInstance, types } from "mobx-state-tree"
+import { IModelType, Instance, SnapshotOrInstance, types } from "mobx-state-tree"
 import { nullableDate } from "../../../../common/state/nullableDate"
 import { getUniqueId } from "../../../../common/state/uid"
 import { stringifyMessage } from "../../helpers/stringifyMessage"
 import type { MessageData } from "../data/MessageData"
 import { EmbedModel } from "./EmbedModel"
+import type { AllowedMentionTypesData } from "../data/AllowedMentionTypeData"
+import type { AllowedMentionsData } from "../data/AllowedMentionsData"
 
 export const MessageModel = types
   .model("MessageModel", {
@@ -21,6 +23,11 @@ export const MessageModel = types
     flags_suppress_embeds: types.optional(types.boolean, false),
     flags_suppress_notifications: types.optional(types.boolean, false), // silent
     tts: types.optional(types.boolean, false),
+    allowed_mentions_types_roles: types.optional(types.boolean, true),
+    allowed_mentions_types_users: types.optional(types.boolean, true),
+    allowed_mentions_types_everyone: types.optional(types.boolean, true),
+    allowed_mentions_roles: types.optional(types.array(types.string), []),
+    allowed_mentions_users: types.optional(types.array(types.string), []),
   })
   .volatile(() => ({
     files: [] as readonly File[],
@@ -52,6 +59,17 @@ export const MessageModel = types
         flags |= 1 << 12
       }
 
+      const allowedMentionTypesData: AllowedMentionTypesData[] = [];
+      if (self.allowed_mentions_types_roles) {
+        allowedMentionTypesData.push("roles")
+      }
+      if (self.allowed_mentions_types_users) {
+        allowedMentionTypesData.push("users")
+      }
+      if (self.allowed_mentions_types_everyone) {
+        allowedMentionTypesData.push("everyone")
+      }
+
       return {
         content: self.content || null,
         embeds: embeds.length > 0 ? embeds : null,
@@ -61,6 +79,11 @@ export const MessageModel = types
         attachments: self.files.length === 0 ? [] : undefined,
         thread_name: self.thread_name || undefined,
         flags: flags === 0 ? undefined : flags,
+        allowed_mentions: {
+          parse: allowedMentionTypesData.length === 0 ? undefined : allowedMentionTypesData,
+          users: self.allowed_mentions_users.length === 0 ? undefined : self.allowed_mentions_users,
+          roles: self.allowed_mentions_roles.length === 0 ? undefined : self.allowed_mentions_roles,
+        }
       }
     },
 
@@ -92,4 +115,4 @@ export const MessageModel = types
   }))
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/consistent-type-definitions
-export interface MessageLike extends Instance<typeof MessageModel> {}
+export interface MessageLike extends Instance<typeof MessageModel> { }

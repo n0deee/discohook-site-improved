@@ -1,0 +1,1 @@
+export type AllowedMentionTypesData = "roles" | "users" | "everyone"

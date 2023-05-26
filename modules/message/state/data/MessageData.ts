@@ -1,3 +1,4 @@
+import type { AllowedMentionsData } from "./AllowedMentionsData"
 import type { EmbedData } from "./EmbedData"
 
 export type MessageData = {
@@ -8,5 +9,6 @@ export type MessageData = {
   readonly files?: readonly File[]
   readonly attachments?: readonly unknown[]
   readonly thread_name?: string | null
-  readonly flags?: number
+  readonly flags?: number,
+  readonly allowed_mentions?: AllowedMentionsData
 }

@@ -105,6 +105,32 @@ export function PrimaryContentEditor(props: PrimaryContentEditorProps) {
           />
         </Stack>
       </Section>
+      <Section name="Allowed Mentions">
+        <Stack gap={12}>
+
+          <Checkbox
+            id={`_${message.id}_allowed_mentions_types_users`}
+            label="Allows Users Mention"
+            description=''
+            error={form.field("allowed_mentions_types_users").error}
+            {...form.field("allowed_mentions_types_users").inputProps}
+          />
+          <Checkbox
+            id={`_${message.id}_allowed_mentions_types_roles`}
+            label="Allows Roles Mention"
+            description=''
+            error={form.field("allowed_mentions_types_roles").error}
+            {...form.field("allowed_mentions_types_roles").inputProps}
+          />
+          <Checkbox
+            id={`_${message.id}_allowed_mentions_types_everyone`}
+            label="Allows @everyone/@here Mention"
+            description=''
+            error={form.field("allowed_mentions_types_everyone").error}
+            {...form.field("allowed_mentions_types_everyone").inputProps}
+          />
+        </Stack>
+      </Section>
       <FileInputField
         id={`_${message.id}_files`}
         label="Files"
