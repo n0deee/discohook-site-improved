@@ -90,7 +90,7 @@ export function Footer() {
         <NavigationItem href="/bot" target="_blank">
           Discord Bot
         </NavigationItem>
-        <NavigationItem href="https://git.io/discohook" target="_blank">
+        <NavigationItem href="https://github.com/n0deee/discohook-site-improved" target="_blank">
           Source Code
         </NavigationItem>
         <NavigationItem href="https://patreon.com/vivifund" target="_blank">
