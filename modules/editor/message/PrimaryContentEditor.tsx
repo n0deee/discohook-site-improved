@@ -129,6 +129,23 @@ export function PrimaryContentEditor(props: PrimaryContentEditorProps) {
             error={form.field("allowed_mentions_types_everyone").error}
             {...form.field("allowed_mentions_types_everyone").inputProps}
           />
+          <InputField
+            id={`_${message.id}_allowed_mentions_users`}
+            label="Users"
+            placeholder="Users IDs separed by spaces (eg: 1234 5912 5819...)"
+            rows={1}
+            error={form.field("allowed_mentions_users").error}
+            {...form.field("allowed_mentions_users").inputProps}
+          />
+          <InputField
+            id={`_${message.id}_allowed_mentions_roles`}
+            label="Roles"
+            placeholder="Roles IDs separed by spaces (eg: 1234 5912 5819...)"
+            rows={1}
+            error={form.field("allowed_mentions_roles").error}
+            {...form.field("allowed_mentions_roles").inputProps}
+          />
+          
         </Stack>
       </Section>
       <FileInputField

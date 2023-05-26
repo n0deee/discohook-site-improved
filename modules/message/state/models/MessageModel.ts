@@ -26,8 +26,8 @@ export const MessageModel = types
     allowed_mentions_types_roles: types.optional(types.boolean, true),
     allowed_mentions_types_users: types.optional(types.boolean, true),
     allowed_mentions_types_everyone: types.optional(types.boolean, true),
-    allowed_mentions_roles: types.optional(types.array(types.string), []),
-    allowed_mentions_users: types.optional(types.array(types.string), []),
+    allowed_mentions_roles: types.optional(types.string, ""),
+    allowed_mentions_users: types.optional(types.string, ""),
   })
   .volatile(() => ({
     files: [] as readonly File[],
@@ -70,6 +70,7 @@ export const MessageModel = types
         allowedMentionTypesData.push("everyone")
       }
 
+
       return {
         content: self.content || null,
         embeds: embeds.length > 0 ? embeds : null,
@@ -81,8 +82,8 @@ export const MessageModel = types
         flags: flags === 0 ? undefined : flags,
         allowed_mentions: {
           parse: allowedMentionTypesData.length === 0 ? undefined : allowedMentionTypesData,
-          users: self.allowed_mentions_users.length === 0 ? undefined : self.allowed_mentions_users,
-          roles: self.allowed_mentions_roles.length === 0 ? undefined : self.allowed_mentions_roles,
+          users: self.allowed_mentions_users.length === 0 ? undefined : self.allowed_mentions_users.split(" "),
+          roles: self.allowed_mentions_roles.length === 0 ? undefined : self.allowed_mentions_roles.split(" "),
         }
       }
     },

@@ -60,20 +60,16 @@ export function MessageEditor(props: MessageEditorProps) {
         <div>
           <EmbedValidationErrorContainer>
             <InputError
-              error={
-                message.embedLength > 6000
-                  ? "Embeds exceed 6000 character limit"
-                  : undefined
-              }
-            />
+              error={message.embedLength > 6000
+                ? "Embeds exceed 6000 character limit"
+                : undefined} />
           </EmbedValidationErrorContainer>
           <Stack gap={16}>
             {message.embeds.map((embed, index) => (
               <EmbedEditor
                 key={embed.id}
                 embed={embed}
-                form={form.repeatingForm("embeds").index(index)}
-              />
+                form={form.repeatingForm("embeds").index(index)} />
             ))}
           </Stack>
         </div>
@@ -83,7 +79,7 @@ export function MessageEditor(props: MessageEditorProps) {
           disabled={message.size >= 10}
           onClick={() => {
             form.repeatingForm("embeds").push({} as EmbedLike, ["timestamp"])
-          }}
+          } }
         >
           Add Embed
         </PrimaryButton>
@@ -93,16 +89,12 @@ export function MessageEditor(props: MessageEditorProps) {
         label="Message Link"
         placeholder="https://discord.com/channels/..."
         error={form.field("reference").error}
-        {...form.field("reference").inputProps}
-      />
+        {...form.field("reference").inputProps} />
       <Message
-        content={
-          "*When a message link is set, pressing submit or edit will edit the" +
+        content={"*When a message link is set, pressing submit or edit will edit the" +
           " message sent inside of Discord. To load a message sent in Discord, use" +
           " the bot's 'restore' command found in the apps section of the right" +
-          " click menu on any message.*"
-        }
-      />
+          " click menu on any message.*"} />
       <ButtonList>
         {editorManager.messages.length > 1 && (
           <SecondaryButton
@@ -113,7 +105,7 @@ export function MessageEditor(props: MessageEditorProps) {
                   path: form.path,
                 },
               ])
-            }}
+            } }
           >
             Remove Message
           </SecondaryButton>

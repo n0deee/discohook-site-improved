@@ -134,6 +134,12 @@ export const editorForm = new Form(EditorManager, {
     allowed_mentions_types_everyone: new Field(converters.boolean, {
       controlled: controlled.object,
     }),
+    allowed_mentions_users: new Field(converters.string, {
+      controlled: controlled.object,
+    }),
+    allowed_mentions_roles: new Field(converters.string, {
+      controlled: controlled.object,
+    }),
     reference: new Field(converters.string, {
       controlled: controlled.object,
       validators: [matchesRegex(MESSAGE_REF_RE, "Invalid message link")],

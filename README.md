@@ -24,3 +24,4 @@ yarn run start
 
 # Fork Changes
 - Added TTS option
+- Added Allowed Mentions options
