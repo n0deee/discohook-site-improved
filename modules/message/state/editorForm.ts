@@ -11,7 +11,7 @@ import { isUrl } from "../../../common/form/validators/isUrl"
 import { matchesRegex } from "../../../common/form/validators/matchesRegex"
 import { maxLength } from "../../../common/form/validators/maxLength"
 import { EditorManager, EditorManagerLike } from "../../editor/EditorManager"
-import { MESSAGE_REF_RE, WEBHOOK_URL_RE } from "../../webhook/constants"
+import { MESSAGE_REF_RE, SNOWFLAKE_LIST_RE, WEBHOOK_URL_RE } from "../../webhook/constants"
 
 export const editorForm = new Form(EditorManager, {
   messages: new RepeatingForm({
@@ -136,13 +136,14 @@ export const editorForm = new Form(EditorManager, {
     }),
     allowed_mentions_users: new Field(converters.string, {
       controlled: controlled.object,
+      validators: [matchesRegex(SNOWFLAKE_LIST_RE, "Invalid IDs list")],
     }),
     allowed_mentions_roles: new Field(converters.string, {
       controlled: controlled.object,
     }),
     reference: new Field(converters.string, {
       controlled: controlled.object,
-      validators: [matchesRegex(MESSAGE_REF_RE, "Invalid message link")],
+      validators: [matchesRegex(SNOWFLAKE_LIST_RE, "Invalid IDs list")],
     }),
   }),
   targets: new RepeatingForm({

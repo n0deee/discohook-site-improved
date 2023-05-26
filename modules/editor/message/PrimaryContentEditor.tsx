@@ -103,6 +103,15 @@ export function PrimaryContentEditor(props: PrimaryContentEditorProps) {
             error={form.field("tts").error}
             {...form.field("tts").inputProps}
           />
+          <InputError
+            variant="warning"
+            error={
+              isEditing
+                ? "You cannot edit the TTS for previously sent messages"
+                : undefined
+            }
+          />
+
         </Stack>
       </Section>
       <Section name="Allowed Mentions">
@@ -145,7 +154,6 @@ export function PrimaryContentEditor(props: PrimaryContentEditorProps) {
             error={form.field("allowed_mentions_roles").error}
             {...form.field("allowed_mentions_roles").inputProps}
           />
-          
         </Stack>
       </Section>
       <FileInputField

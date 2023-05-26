@@ -10,5 +10,6 @@ export type MessageData = {
   readonly attachments?: readonly unknown[]
   readonly thread_name?: string | null
   readonly flags?: number,
+  readonly tts?: boolean,
   readonly allowed_mentions?: AllowedMentionsData
 }

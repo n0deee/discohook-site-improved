@@ -80,10 +80,11 @@ export const MessageModel = types
         attachments: self.files.length === 0 ? [] : undefined,
         thread_name: self.thread_name || undefined,
         flags: flags === 0 ? undefined : flags,
+        tts: self.tts,
         allowed_mentions: {
           parse: allowedMentionTypesData.length === 0 ? undefined : allowedMentionTypesData,
-          users: self.allowed_mentions_users.length === 0 ? undefined : self.allowed_mentions_users.split(" "),
-          roles: self.allowed_mentions_roles.length === 0 ? undefined : self.allowed_mentions_roles.split(" "),
+          users: self.allowed_mentions_users.length === 0 ? undefined : self.allowed_mentions_users.split(" ").filter(x => x.length > 0),
+          roles: self.allowed_mentions_roles.length === 0 ? undefined : self.allowed_mentions_roles.split(" ").filter(x => x.length > 0),
         }
       }
     },
