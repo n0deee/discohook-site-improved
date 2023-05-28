@@ -59,7 +59,8 @@ export const MessageModel = types
         flags |= 1 << 12
       }
 
-      const allowedMentionTypesData: AllowedMentionTypesData[] = [];
+      let allowedMentionTypesData: AllowedMentionTypesData[] = [];
+
       if (self.allowed_mentions_types_roles) {
         allowedMentionTypesData.push("roles")
       }
@@ -82,7 +83,7 @@ export const MessageModel = types
         flags: flags === 0 ? undefined : flags,
         tts: self.tts,
         allowed_mentions: {
-          parse: allowedMentionTypesData.length === 0 ? undefined : allowedMentionTypesData,
+          parse: allowedMentionTypesData,
           users: self.allowed_mentions_users.length === 0 ? undefined : self.allowed_mentions_users.split(" ").filter(x => x.length > 0),
           roles: self.allowed_mentions_roles.length === 0 ? undefined : self.allowed_mentions_roles.split(" ").filter(x => x.length > 0),
         }
