@@ -140,10 +140,10 @@ export const editorForm = new Form(EditorManager, {
     }),
     allowed_mentions_roles: new Field(converters.string, {
       controlled: controlled.object,
+      validators: [matchesRegex(SNOWFLAKE_LIST_RE, "Invalid IDs list")],
     }),
     reference: new Field(converters.string, {
       controlled: controlled.object,
-      validators: [matchesRegex(SNOWFLAKE_LIST_RE, "Invalid IDs list")],
     }),
   }),
   targets: new RepeatingForm({
